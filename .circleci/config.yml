@@ -1,11 +1,24 @@
 version: 2.1
+commands:
+  hello:
+    description: "Say hello"
+    steps:
+      - run:
+          name: "Say hello"
+          command: echo "Hello"
 
 jobs:
-  hello-job:
-    - checkout # check out the code in the project directory
-    - run: echo "hello world" # run the `echo` command
+  build:
+    docker:
+      - image: cimg/node:18.4.0
+    steps:
+      - checkout
+      - hello
 
 workflows:
-  my-workflow:
+  build:
     jobs:
-      - hello-job
+      - build:
+          filters:
+            branches:
+              only: /^main$/
