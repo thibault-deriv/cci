@@ -17,7 +17,7 @@ commands:
     steps:
       - run:
           name: "Say hello"
-          command: if [ "${VAR}" = "VAR_FROM_CONTEXT" ]; then echo "ENV"; fi
+          command: if [ "${VAR}" = "VAR_FROM_CONTEXT" ]; then echo "CONTEXT"; fi
 
 jobs:
   from-env:
