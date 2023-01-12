@@ -52,11 +52,11 @@ workflows:
           filters:
             branches:
               only: /^main$/
-          context: my-context
+          context: mycontext
   from-both:
     jobs:
       - from-both:
           filters:
             branches:
               only: /^main$/
-          context: my-context
+          context: mycontext
