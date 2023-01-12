@@ -12,7 +12,7 @@ commands:
       - run:
           name: "Say hello"
           command: echo "Hello ${VARC}"
-   hello-from-both:
+  hello-from-both:
     description: "Say hello"
     steps:
       - run:
@@ -26,13 +26,13 @@ jobs:
     steps:
       - checkout
       - hello-from-env
-  build:
+  from-context:
     docker:
       - image: cimg/node:18.4.0
     steps:
       - checkout
       - hello-from-context
-  build:
+  from-both:
     docker:
       - image: cimg/node:18.4.0
     steps:
@@ -42,20 +42,20 @@ jobs:
 workflows:
   from-env:
     jobs:
-      - build:
+      - from-env:
           filters:
             branches:
               only: /^main$/
   from-context:
     jobs:
-      - build:
+      - from-context:
           filters:
             branches:
               only: /^main$/
           context: my-context
-  both:
+  from-both:
     jobs:
-      - build:
+      - from-both:
           filters:
             branches:
               only: /^main$/
