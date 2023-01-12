@@ -1,24 +1,62 @@
 version: 2.1
 commands:
-  hello:
+  hello-from-env:
     description: "Say hello"
     steps:
       - run:
           name: "Say hello"
-          command: echo "Hello"
+          command: echo "Hello ${VAR}"
+  hello-from-context:
+    description: "Say hello"
+    steps:
+      - run:
+          name: "Say hello"
+          command: echo "Hello ${VARC}"
+   hello-from-both:
+    description: "Say hello"
+    steps:
+      - run:
+          name: "Say hello"
+          command: echo "Hello ${VAR}"
 
 jobs:
+  from-env:
+    docker:
+      - image: cimg/node:18.4.0
+    steps:
+      - checkout
+      - hello-from-env
   build:
     docker:
       - image: cimg/node:18.4.0
     steps:
       - checkout
-      - hello
+      - hello-from-context
+  build:
+    docker:
+      - image: cimg/node:18.4.0
+    steps:
+      - checkout
+      - hello-from-both
 
 workflows:
-  build:
+  from-env:
     jobs:
       - build:
           filters:
             branches:
               only: /^main$/
+  from-context:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /^main$/
+          context: my-context
+  both:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: /^main$/
+          context: my-context
