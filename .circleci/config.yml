@@ -5,19 +5,19 @@ commands:
     steps:
       - run:
           name: "Say hello"
-          command: echo "Hello ${VAR}"
+          command: if [ "${VAR}" = "VAR_FROM_ENV" ]; then echo "ENV"; fi
   hello-from-context:
     description: "Say hello"
     steps:
       - run:
           name: "Say hello"
-          command: echo "Hello ${VARC}"
+          command: if [ "${VARC}" = "VAR_FROM_CONTEXT" ]; then echo "CONTEXT"; fi
   hello-from-both:
     description: "Say hello"
     steps:
       - run:
           name: "Say hello"
-          command: echo "Hello ${VAR}"
+          command: if [ "${VAR}" = "VAR_FROM_CONTEXT" ]; then echo "ENV"; fi
 
 jobs:
   from-env:
