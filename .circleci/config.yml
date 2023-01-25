@@ -78,6 +78,7 @@ jobs:
       - run:
           name: Setup name/mail, tag and push tag
           command: |
+            ssh-add -l
             git config --global user.name "thibault-deriv"
             git config --global user.email "thibault@deriv.com"
             tag=`date +%s`
