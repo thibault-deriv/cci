@@ -47,8 +47,9 @@ jobs:
       - setup_remote_docker
       - add_ssh_keys:
           fingerprints:
-           - f2:9c:be:08:e5:fb:25:0e:70:ed:29:2f:8e:9a:21:bb
            - 8f:4c:c7:7d:53:7d:af:cc:ee:e5:e8:aa:50:a2:87:af
+           - f2:9c:be:08:e5:fb:25:0e:70:ed:29:2f:8e:9a:21:bb
+           
       - run:
           name: Setup name/mail, tag and push tag
           command: |
