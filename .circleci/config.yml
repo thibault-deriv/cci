@@ -43,10 +43,10 @@ jobs:
     docker:
       - image: alpine/git:v2.34.1
     steps:
+      - checkout
       - add_ssh_keys:
           fingerprints:
-            - f2:9c:be:08:e5:fb:25:0e:70:ed:29:2f:8e:9a:21:dd
-      - checkout
+            - f2:9c:be:08:e5:fb:25:0e:70:ed:29:2f:8e:9a:21:bb
       - run:
           name: Setup name/mail, tag and push tag
           command: |
