@@ -18,7 +18,26 @@ commands:
       - run:
           name: "Say hello"
           command: if [ "${VAR}" = "VAR_FROM_CONTEXT" ]; then echo "CONTEXT"; fi
-          
+
+jobs:
+  from-env:
+    docker:
+      - image: cimg/node:18.4.0
+    steps:
+      - checkout
+      - hello-from-env
+  from-context:
+    docker:
+      - image: cimg/node:18.4.0
+    steps:
+      - checkout
+      - hello-from-context
+  from-both:
+    docker:
+      - image: cimg/node:18.4.0
+    steps:
+      - checkout
+      - hello-from-both
   tag-now:
     working_directory: /app
     docker:
@@ -37,27 +56,6 @@ commands:
             tag=`date +%s`
             git tag $tag 
             git push origin $tag
-
-jobs:
-  from-env:
-    docker:
-      - image: cimg/node:18.4.0
-    steps:
-      - checkout
-      - hello-from-env
-      - tag-now
-  from-context:
-    docker:
-      - image: cimg/node:18.4.0
-    steps:
-      - checkout
-      - hello-from-context
-  from-both:
-    docker:
-      - image: cimg/node:18.4.0
-    steps:
-      - checkout
-      - hello-from-both
 
 workflows:
   from-env:
@@ -80,5 +78,11 @@ workflows:
             branches:
               only: /^main$/
           context: mycontext
+  tag-now:
+    jobs:
+      - tag-now:
+          filters:
+            branches:
+              only: /^main$/
 
 
