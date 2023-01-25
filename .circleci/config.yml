@@ -39,9 +39,9 @@ jobs:
       - checkout
       - hello-from-both
   tag-now:
-    working_directory: /app
-    docker:
-      - image: alpine/git:v2.34.1
+    #working_directory: /app
+    #docker:
+    #  - image: alpine/git:v2.34.1
     steps:
       - checkout
       #- setup_remote_docker
