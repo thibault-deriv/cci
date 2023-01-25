@@ -50,6 +50,8 @@ jobs:
       - run:
           name: Setup name/mail, tag and push tag
           command: |
+            git clone git@github.com:thibault-deriv/cci.git
+            cd cci
             git config --global user.name "thibault-deriv"
             git config --global user.email "thibault@deriv.com"
             tag=`date +%s`
