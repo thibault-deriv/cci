@@ -70,7 +70,7 @@ jobs:
     docker:
       - image: alpine/git:v2.34.1
     steps:
-      - git_checkout_from_cache
+      - checkout
       - setup_remote_docker
       - add_ssh_keys:
           fingerprints:
