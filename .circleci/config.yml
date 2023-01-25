@@ -21,22 +21,22 @@ commands:
           
   tag-now:
     working_directory: /app
-      docker:
-        - image: alpine/git:v2.34.1
-      steps:
-        #- add_ssh_keys:
-        #    fingerprints:
-        #      - 41:9e:bb:54:d5:b9:31:f0:21:78:15:6a:29:da:9d:55
-        - checkout
-        - setup_remote_docker
-        - run:
-            name: Setup name/mail, tag and push tag
-             command: |
-               git config --global user.name "thibault-deriv"
-               git config --global user.email "thibault@deriv.com"
-               tag=`date +%s`
-               git tag $tag 
-               git push origin $tag
+    docker:
+      - image: alpine/git:v2.34.1
+    steps:
+      #- add_ssh_keys:
+      #    fingerprints:
+      #      - 41:9e:bb:54:d5:b9:31:f0:21:78:15:6a:29:da:9d:55
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Setup name/mail, tag and push tag
+          command: |
+            git config --global user.name "thibault-deriv"
+            git config --global user.email "thibault@deriv.com"
+            tag=`date +%s`
+            git tag $tag 
+            git push origin $tag
 
 jobs:
   from-env:
